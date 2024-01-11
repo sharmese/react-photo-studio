@@ -1,0 +1,139 @@
+@import '../../styles/variables';
+
+.header {
+  position: relative;
+  overflow: hidden;
+  &__background {
+    @include background($color-dark-grey);
+  }
+  &__banner {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    position: absolute;
+    padding-top: 5rem;
+    top: 20%;
+    left: 50%;
+    height: 70%;
+    transform: translate(-50%, -20%);
+    &-text {
+      font-size: 15vw;
+      color: $color-beige;
+      font-style: normal;
+      line-height: normal;
+      font-family: $font-zetta;
+      text-transform: uppercase;
+    }
+  }
+}
+.banner-container {
+  position: relative;
+  height: 100vh;
+}
+.nav {
+  background: $color-dark-grey;
+  z-index: 19;
+  position: fixed;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 7%;
+  max-height: 100px;
+  width: 100%;
+  &-first {
+    display: flex;
+    font-family: $font-zetta;
+    text-transform: uppercase;
+    font-size: 2.4rem;
+  }
+  &__link {
+    margin-right: 1.8rem;
+    margin-left: 1.8rem;
+    color: $color-beige;
+    border: unset;
+    background: unset;
+    cursor: pointer;
+    align-self: flex-start;
+  }
+  &-second {
+    display: flex;
+  }
+  &__cart {
+    position: relative;
+    &--counter {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      top: 0;
+      right: -5px;
+      background: $color-beige;
+      width: 2rem;
+      height: 2rem;
+      border-radius: 10px;
+      color: $color-black;
+    }
+  }
+  &-burger {
+    display: none;
+    &--btn {
+      background: none;
+      border: none;
+    }
+  }
+}
+.btn {
+  padding: 10px 112px;
+  font-size: 24px;
+  font-family: $font-zetta;
+  text-transform: uppercase;
+  background: transparent;
+  color: $color-beige;
+  border: 1px solid $color-beige;
+  max-width: fit-content;
+}
+// @media only screen and (max-width: 1280px) {
+//   .nav__link {
+//     &-1,
+//     &-2 {
+//       display: none;
+//     }
+//   }
+// }
+@media only screen and (max-width: 1024px) {
+  .nav {
+    justify-content: unset;
+    &-first {
+      display: none;
+    }
+    &-second {
+      display: none;
+    }
+    &-burger {
+      display: initial;
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  // .nav__link {
+  //   &-3 {
+  //     display: none;
+  //   }
+  // }
+  .btn {
+    padding: 10px 60px;
+  }
+}
+// @media only screen and (max-width: 640px) {
+//   // .nav__link {
+//   //   &-4 {
+//   //     display: none;
+//   //   }
+//   // }
+// }
+
+// breakpoints
+// 1280
+// 1024
+// 768
+// 640

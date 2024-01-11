@@ -1,0 +1,22 @@
+@import '../../styles/variables';
+.searchbar {
+  background: $color-white;
+  text-align: center;
+  border-radius: 10px;
+  border: 1px solid $color-beige;
+  &__items {
+    max-height: 300px;
+    overflow: auto;
+  }
+  &__input {
+    border-radius: 10px;
+    padding: 4px 10px;
+    border-width: 0;
+  }
+  &__item {
+    border-bottom: 1px solid $color-beige;
+    border-radius: 10px;
+    padding: 10px 10px;
+    text-align: center;
+  }
+}

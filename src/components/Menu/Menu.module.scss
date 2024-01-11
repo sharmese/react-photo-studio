@@ -1,0 +1,148 @@
+@import '../../styles/variables';
+.menu {
+  &__container {
+    width: 86vw;
+    margin: 0 auto;
+    height: 90svh;
+    padding-top: 5rem;
+  }
+  &__open {
+    position: absolute;
+    left: 0;
+    right: 0;
+    animation: 0.7s ease-in menuOpen;
+    animation-fill-mode: forwards;
+  }
+  &__hidden {
+    display: none;
+  }
+  &__close {
+    animation: 0.7s ease-out menuClose;
+    animation-fill-mode: forwards;
+  }
+  &__button {
+    cursor: pointer;
+    background: transparent;
+    margin-bottom: 30px;
+  }
+  &__background {
+    position: absolute;
+    left: 0;
+    height: 100svh;
+    background: $color-light-grey;
+    width: 100vw;
+    z-index: -1;
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: $font-ledger;
+    font-size: 4rem;
+    height: 15%;
+    margin-bottom: 1rem;
+    border-radius: 20px;
+    &:hover {
+      background: $color-beige;
+      border: 1px solid $color-grey;
+    }
+    &:active {
+      background: $color-white;
+    }
+  }
+}
+.line {
+  width: 30px;
+  height: 3px;
+  margin: 8px 0px;
+  border-radius: 30px;
+  background: $color-beige;
+  &-1 {
+    animation: 0.3s ease-in openAnimation1;
+    animation-fill-mode: forwards;
+  }
+  &-2 {
+    animation: 0.3s ease-in openAnimation2;
+    animation-fill-mode: forwards;
+  }
+  &-3 {
+    animation: 0.3s ease-in openAnimation3;
+    animation-fill-mode: forwards;
+  }
+}
+.close-1 {
+  animation: 0.3s ease-in closeAnimation1;
+  animation-fill-mode: forwards;
+}
+.close-2 {
+  animation: 0.3s ease-in closeAnimation2;
+  animation-fill-mode: forwards;
+}
+.close-3 {
+  animation: 0.3s ease-in closeAnimation3;
+  animation-fill-mode: forwards;
+}
+
+@keyframes menuClose {
+  0% {
+  }
+  100% {
+    transform: translateX(-120vw);
+  }
+}
+@keyframes menuOpen {
+  0% {
+    transform: translateX(-120vw);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@keyframes openAnimation1 {
+  0% {
+  }
+  100% {
+    transform: translateY(11px) rotate(-45deg);
+  }
+}
+@keyframes openAnimation2 {
+  0% {
+  }
+  100% {
+    transform: translateX(-1000%);
+  }
+}
+@keyframes openAnimation3 {
+  0% {
+  }
+  100% {
+    transform: translateY(-11px) rotate(45deg);
+  }
+}
+@keyframes closeAnimation1 {
+  0% {
+    transform: translateY(11px) rotate(-45deg);
+  }
+  100% {
+  }
+}
+@keyframes closeAnimation2 {
+  0% {
+    transform: translateX(-1000%);
+  }
+  100% {
+  }
+}
+@keyframes closeAnimation3 {
+  0% {
+    transform: translateY(-11px) rotate(45deg);
+  }
+  100% {
+  }
+}

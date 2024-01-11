@@ -1,0 +1,53 @@
+@import '../../../styles/variables';
+.questions {
+  position: relative;
+  &__background {
+    @include background($color-light-grey);
+  }
+  &__content {
+    display: flex;
+    justify-content: space-between;
+    color: $color-dark-beige;
+    font-size: 2.4rem;
+    &--left {
+      font-family: $font-ledger;
+      font-size: 2em;
+      flex: 33%;
+    }
+    &--right {
+      font-family: $font-zetta;
+      font-size: 1em;
+      flex: 66%;
+      hr {
+        margin-top: 0.5em;
+        margin-bottom: 0.67em;
+      }
+      li {
+        display: flex;
+        justify-content: space-between;
+        p {
+          font-size: 1.5em;
+          line-height: 1;
+        }
+      }
+    }
+  }
+}
+@media only screen and (max-width: 768px) {
+  .questions {
+    &__content {
+      display: block;
+      &--left {
+        margin-bottom: 50px;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 640px) {
+  .questions {
+    &__content {
+      &--right {
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Ledger&family=Lexend+Zetta:wght@500&display=swap');
+
+$color-beige: #e9e7dc;
+$color-white: #fff;
+$color-black: #000;
+$color-grey: #8b8b8b;
+
+$color-light-grey: #e3e3e3;
+
+$color-dark-beige: #3d2e10;
+$color-dark-grey: #565656;
+$color-dark-green: #75715e;
+
+$font-zetta: 'Lexend Zetta', sans-serif;
+$font-ledger: 'Ledger', serif;
+
+@mixin background($c) {
+  background: $c;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}

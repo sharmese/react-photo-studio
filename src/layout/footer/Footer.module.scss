@@ -1,0 +1,41 @@
+@import '../../styles/variables';
+
+.footer {
+  padding-top: 100px;
+  &__heading {
+    text-align: center;
+    font-size: 15vw;
+    color: $color-dark-beige;
+    font-style: normal;
+    line-height: normal;
+    font-family: $font-zetta;
+    text-transform: uppercase;
+  }
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    &--icons {
+      display: flex;
+      padding: 2rem 0;
+      img {
+        margin-top: 5px;
+        margin-bottom: 5px;
+        margin-left: 10px;
+        width: 4.7rem;
+      }
+    }
+    &--inst {
+      font-size: 3.2rem;
+    }
+  }
+  &__info {
+    padding-top: 2rem;
+    display: flex;
+    gap: 20px;
+    p {
+      flex: 25%;
+      font-size: 2rem;
+    }
+  }
+}
