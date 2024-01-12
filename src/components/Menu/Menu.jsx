@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState, useCallback } from 'react';
+import React, { useState, useCallback } from 'react';
 import style from './Menu.module.scss';
 
 const Menu = () => {

@@ -55,7 +55,6 @@ const Login = (props) => {
 
   useEffect(() => {
     props.handleLogin(isUser);
-    console.log(isUser);
   }, [isUser, props]);
 
   const inputStyle = useMemo(

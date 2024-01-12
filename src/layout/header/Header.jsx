@@ -9,16 +9,21 @@ import Cart from '../../components/Cart/Cart';
 import Login from '../../components/Login/Login';
 
 import { Link } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../store/ui-slice';
+import { userActions } from '../../store/profile-slice';
 const Header = (props) => {
   const [isSearching, setIsSearching] = useState(false);
-  const [isLogged, setIsLogged] = useState(false);
 
   const dispatch = useDispatch();
 
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
+
+  const toggleUser = useSelector((state) => state.user.userIsLogged);
+  const toggleUserHandler = (isUser) => {
+    dispatch(userActions.toggleUser(isUser));
+  };
 
   const toggleLogin = useSelector((state) => state.ui.loginIsVisible);
   const toggleLoginHandler = () => {
@@ -28,10 +33,6 @@ const Header = (props) => {
   const toggleCart = useSelector((state) => state.ui.cartIsVisible);
   const toggleCartHandler = () => {
     dispatch(uiActions.toggleCart());
-  };
-
-  const userLogged = (user) => {
-    setIsLogged(user);
   };
 
   const handleSearch = () => {
@@ -44,8 +45,8 @@ const Header = (props) => {
   return (
     <header className={style.header}>
       {toggleCart && <Cart onClose={toggleCartHandler} />}
-      {!isLogged && toggleLogin && (
-        <Login onClose={toggleLoginHandler} handleLogin={userLogged} />
+      {!toggleUser && toggleLogin && (
+        <Login onClose={toggleLoginHandler} handleLogin={toggleUserHandler} />
       )}
       <nav className={style.nav}>
         <div className={style['nav-first']}>
@@ -88,20 +89,20 @@ const Header = (props) => {
             )}
           </div>
           <button className={`${style['nav__link']} ${style['nav__link-6']}`}>
-            <img src={heart} />
+            <img src={heart} alt='wishlist' />
           </button>
           <Link
-            to={isLogged ? '/profile' : ''}
+            to={toggleUser ? '/profile' : ''}
             onClick={toggleLoginHandler}
             className={`${style['nav__link']} ${style['nav__link-7']}`}
           >
-            <img src={profile} />
+            <img src={profile} alt='profile' />
           </Link>
           <button
             onClick={toggleCartHandler}
             className={`${style['nav__link']} ${style['nav__cart']}`}
           >
-            <img src={basket} />
+            <img src={basket} alt='cart' />
             {cartQuantity > 0 && (
               <p className={style['nav__cart--counter']}>{cartQuantity}</p>
             )}

@@ -1,14 +1,17 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 import style from './Profile.module.scss';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 
 const Profile = () => {
   return (
-    <div>
+    <Fragment>
       <Header />
+      <div className={style.wrapper}>
+        <button> Exit</button>
+      </div>
       <Footer />
-    </div>
+    </Fragment>
   );
 };
 

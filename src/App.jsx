@@ -1,5 +1,3 @@
-import { Fragment } from 'react';
-
 import Home from './pages/home/Home';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Profile from './pages/profile/Profile';

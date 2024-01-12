@@ -3,8 +3,12 @@ const userSlice = createSlice({
   name: 'user',
   initialState: { userIsLogged: false, userData: [] },
   reducers: {
-    toggleUser(state) {
-      state.userIsLogged = true;
+    toggleUser(state, action) {
+      const isUser = action.payload;
+      state.userIsLogged = isUser;
+    },
+    exitUser(state) {
+      state.userIsLogged = false;
     },
   },
 });
