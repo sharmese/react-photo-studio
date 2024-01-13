@@ -3,12 +3,9 @@ import style from './Products.module.scss';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
-import { productActions } from '../../store/products-slice';
 const ProductCard = (props) => {
   const dispatch = useDispatch();
-  const getIdHandler = () => {
-    dispatch(productActions.getProductById(props.id));
-  };
+
   const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({
@@ -20,7 +17,7 @@ const ProductCard = (props) => {
   };
   return (
     <Fragment>
-      <Link onClick={getIdHandler} to={'/product/' + props.id}>
+      <Link to={`/product/${props.id}`}>
         <h2>{props.name}</h2>
         <div className={style['products__product']}>
           <img src={props.image} alt='product' />

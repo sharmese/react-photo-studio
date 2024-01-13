@@ -1,22 +1,19 @@
-import React, { Fragment, useCallback, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import style from './Product.module.scss';
-import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
 import { productActions } from '../../store/products-slice';
 //desc price name color size quantity
 
 const Product = (props) => {
-  const dispatch = useDispatch();
+  const { id } = useParams();
 
-  const getIdHandler = () => {
-    dispatch(productActions.getProductById(props.id));
-    console.log(props.id);
-  };
+  const dispatch = useDispatch();
   useEffect(() => {
-    getIdHandler();
-  }, []);
+    dispatch(productActions.getProductById(id));
+  }, [dispatch, id]);
   const product = useSelector((state) => state.product.reqItem);
 
   return (
