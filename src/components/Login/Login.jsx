@@ -1,6 +1,8 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Modal from '../UI/Modal';
 import style from './Login.module.scss';
+import { useSelector, useDispatch } from 'react-redux';
+import { userActions } from '../../store/profile-slice';
 
 const registeredUsers = [
   { name: 'daria', password: 'babenko' },
@@ -14,9 +16,12 @@ const Login = (props) => {
   const [userLogin, setUserLogin] = useState('');
   const [userPassword, setUserPassword] = useState('');
 
-  const [isUser, setIsUser] = useState(false);
   const [focused, setFocused] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+
+  const dispatch = useDispatch();
+
+  const toggleUser = useSelector((state) => state.user.userIsLogged);
 
   const userPasswordRef = useRef(null);
   const userLoginRef = useRef(null);
@@ -40,12 +45,11 @@ const Login = (props) => {
       });
 
       if (user) {
-        setIsUser(Boolean(user));
+        dispatch(userActions.toggleUser(Boolean(user)));
         setIsTyping(false);
 
         return;
       }
-
       //....
       // setError('sadfasdfas')
     }
@@ -53,13 +57,9 @@ const Login = (props) => {
     //...
   };
 
-  useEffect(() => {
-    props.handleLogin(isUser);
-  }, [isUser, props]);
-
   const inputStyle = useMemo(
-    () => (!isUser ? (focused ? '' : isTyping ? '' : style.red) : ''),
-    [focused, isTyping, isUser]
+    () => (!toggleUser ? (focused ? '' : isTyping ? '' : style.red) : ''),
+    [focused, isTyping, toggleUser]
   );
 
   return (

@@ -5,6 +5,7 @@
   overflow: hidden;
   &__background {
     @include background($color-dark-grey);
+    top: -100px;
   }
   &__banner {
     display: flex;
@@ -13,7 +14,7 @@
     align-items: center;
     position: absolute;
     padding-top: 5rem;
-    top: 20%;
+    top: 10%;
     left: 50%;
     height: 70%;
     transform: translate(-50%, -20%);
@@ -29,7 +30,7 @@
 }
 .banner-container {
   position: relative;
-  height: 100vh;
+  height: 90vh;
 }
 .nav {
   background: $color-dark-grey;
@@ -38,8 +39,9 @@
   display: flex;
   justify-content: space-around;
   padding: 20px 7%;
-  max-height: 100px;
-  width: 100%;
+  top: 0;
+  right: 0;
+  left: 0;
   &-first {
     display: flex;
     font-family: $font-zetta;

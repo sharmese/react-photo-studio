@@ -1,0 +1,23 @@
+.btn {
+}
+.product {
+  display: flex;
+  &__images {
+    display: flex;
+    margin-top: 2rem;
+    flex: 60%;
+    &--small {
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+      margin-right: 3.5rem;
+      max-width: 12rem;
+    }
+    &--big {
+      max-width: 51rem;
+    }
+  }
+  &__info {
+    flex: 40%;
+  }
+}

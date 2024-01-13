@@ -9,7 +9,7 @@ import style from '../../layout/header/Header.module.scss';
 const Home = () => {
   return (
     <Fragment>
-      <Header />
+      <Header isHome={true} />
       <div className={style['banner-container']}>
         <div className={style['header__background']}></div>
         <div className={style['header__banner']}>

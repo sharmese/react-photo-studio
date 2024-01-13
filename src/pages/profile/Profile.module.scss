@@ -1,3 +1,58 @@
+@import '../../styles/variables';
+
 .wrapper {
-  margin-top: 100px;
+}
+.profile {
+  &__wrapper {
+    display: flex;
+    flex-direction: column;
+    h1 {
+      position: absolute;
+      font-family: $font-ledger;
+      text-transform: uppercase;
+      font-weight: 400;
+      left: 32%;
+      font-size: 3.6rem;
+    }
+  }
+
+  &__content {
+    display: flex;
+    margin-top: 5rem;
+  }
+  &__info {
+    align-self: center;
+    display: flex;
+    flex: 70%;
+    flex-direction: column;
+    gap: 3rem;
+    align-items: center;
+    input {
+      padding: 1.5rem 1rem;
+      border: 1px solid $color-dark-beige;
+      color: $color-dark-grey;
+      min-width: 50%;
+      max-width: 62rem;
+    }
+    input::placeholder {
+      color: $color-dark-grey;
+    }
+    button {
+      background: #565656;
+      padding: 1.5rem 1rem;
+      color: $color-beige;
+      cursor: pointer;
+      min-width: 30%;
+      max-width: 42rem;
+    }
+  }
+  &__nav {
+    flex: 10%;
+    &--link {
+      padding: 1.5rem 1rem;
+      margin-bottom: 0.2rem;
+      border: 1px solid $color-dark-beige;
+      max-width: 24rem;
+    }
+  }
 }

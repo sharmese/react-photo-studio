@@ -42,6 +42,7 @@ html {
 body {
   font-size: 1.6rem;
   line-height: 1.5;
+  padding-top: 100px;
   -webkit-font-smoothing: antialiased;
 }
 .container {
@@ -56,6 +57,9 @@ body {
 .jc-c {
   display: flex;
   justify-content: center;
+}
+.jc-sb {
+  justify-content: space-between;
 }
 img,
 picture,

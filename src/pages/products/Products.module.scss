@@ -1,0 +1,17 @@
+@import '../../styles/variables';
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  li {
+    flex: 20%;
+  }
+  &__product {
+    img {
+      background: $color-beige;
+      aspect-ratio: 5/4;
+      object-fit: cover;
+    }
+  }
+}
