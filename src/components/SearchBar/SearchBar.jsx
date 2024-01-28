@@ -1,6 +1,8 @@
 import React, { useMemo } from 'react';
 import style from './SearchBar.module.scss';
 import { useState, useRef, useEffect } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const DUMMY_SEARCH = [
   { name: 'Belgium', continent: 'Europe' },
@@ -32,7 +34,7 @@ const DUMMY_SEARCH = [
 const SearchBar = (props) => {
   const [searchInput, setSearchInput] = useState('');
   const searchRef = useRef(null);
-
+  const products = useSelector((state) => state.product.items);
   const handleSearch = (e) => {
     e.preventDefault();
     setSearchInput(e.target.value);
@@ -41,32 +43,42 @@ const SearchBar = (props) => {
   useEffect(() => {
     searchRef.current.focus();
   }, []);
-
+  const handleBlur = () => {
+    setTimeout(() => {
+      props.onBlur();
+    }, 200);
+  };
   const searchItem = useMemo(
     () =>
-      DUMMY_SEARCH.map((item, index) => {
-        if (item.name.toLowerCase().match(searchInput)) {
+      products.map((item, index) => {
+        if (
+          item.name.toLowerCase().match(searchInput.toLowerCase()) ||
+          item.shortName.toLowerCase().match(searchInput.toLowerCase())
+        ) {
           return (
-            <div className={style['searchbar__item']} key={index}>
-              {item.name} {item.continent}
-            </div>
+            <Link
+              to={`/product/${item.id}`}
+              className={style['searchbar__item']}
+              key={index}
+            >
+              {item.shortName} {`${item.price}$`}
+            </Link>
           );
         }
 
         return null;
       }),
-    [searchInput]
+    [products, searchInput]
   );
 
   return (
-    <div className={style.searchbar}>
+    <div className={style.searchbar} onBlur={handleBlur}>
       <input
         className={style['searchbar__input']}
         type='text'
         placeholder='search..'
         onChange={handleSearch}
         value={searchInput}
-        onBlur={props.onBlur}
         ref={searchRef}
       />
       {searchInput.length > 0 && (

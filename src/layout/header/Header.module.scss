@@ -32,6 +32,9 @@
   position: relative;
   height: 90vh;
 }
+.hidden {
+  display: none;
+}
 .nav {
   background: $color-dark-grey;
   z-index: 19;

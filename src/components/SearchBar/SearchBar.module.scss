@@ -5,7 +5,9 @@
   border-radius: 10px;
   border: 1px solid $color-beige;
   &__items {
+    text-wrap: wrap;
     max-height: 300px;
+    max-width: 25rem;
     overflow: auto;
   }
   &__input {
@@ -18,5 +20,6 @@
     border-radius: 10px;
     padding: 10px 10px;
     text-align: center;
+    cursor: pointer;
   }
 }

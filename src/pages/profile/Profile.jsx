@@ -5,12 +5,14 @@ import Footer from '../../layout/footer/Footer';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { userActions } from '../../store/profile-slice';
+import { getAuth, signOut } from 'firebase/auth';
 
 const Profile = () => {
   const dispatch = useDispatch();
-
+  const auth = getAuth();
   const handleExitUser = () => {
     dispatch(userActions.exitUser());
+    signOut(auth);
   };
 
   return (

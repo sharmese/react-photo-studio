@@ -1,43 +1,9 @@
 import style from './Assortment.module.scss';
-import basket from '../../../assets/basket2.png';
+import basket from '../../../assets/basket2.svg';
 import image1 from '../../../assets/imagefull.jpeg';
 import image2 from '../../../assets/imagefull2.jpeg';
-import { useDispatch } from 'react-redux';
-import { cartActions } from '../../../store/cart-slice';
-
-const cartData = [
-  {
-    id: '1',
-    name: 'Black suit',
-    desc: 'fuck',
-    price: 100,
-  },
-  {
-    id: '2',
-    name: 'Skirt',
-    desc: 'mock',
-    price: 35,
-  },
-  {
-    id: '3',
-    name: 'lock',
-    desc: 'rock',
-    price: 4,
-    quantity: 1,
-  },
-];
 
 const Assortment = (props) => {
-  const dispatch = useDispatch();
-  const addToCartHandler = () => {
-    dispatch(
-      cartActions.addItemToCart({
-        id: cartData[0].id,
-        price: cartData[0].price,
-        name: cartData[0].name,
-      })
-    );
-  };
   return (
     <div className={style.assortment} id='assortment'>
       <div className={style.assortment__background}></div>
@@ -64,7 +30,7 @@ const Assortment = (props) => {
               <h2>асортимент</h2>
             </div>
             <ul>
-              <li onClick={addToCartHandler}>
+              <li>
                 <p className='jc-fe'>01</p>
                 <img src={image1} alt='295x244' />
                 <p>СОРОЧКА-ПОРТУПЕЯ В ЧОРНОМУ КОЛЬОРІ</p>

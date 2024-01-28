@@ -5,13 +5,51 @@
   flex-wrap: wrap;
   gap: 20px;
   li {
-    flex: 20%;
   }
   &__product {
     img {
       background: $color-beige;
       aspect-ratio: 5/4;
       object-fit: cover;
+    }
+  }
+}
+.product {
+  &__wrapper {
+    flex: 20%;
+
+    padding: 1rem 1rem;
+    border-radius: 30px;
+    border: 1px solid $color-dark-beige;
+    p {
+      text-align: center;
+      font-size: 2rem;
+    }
+    hr {
+      margin-bottom: 1rem;
+    }
+  }
+  &__buttons {
+    display: flex;
+    justify-content: space-around;
+  }
+  &--btn {
+    padding: 0.5rem 2rem;
+    background: $color-beige;
+    border: none;
+    font-size: 2rem;
+    border-radius: 30px;
+    cursor: pointer;
+  }
+  &--btn:hover {
+    background-color: $color-dark-beige;
+    color: $color-beige;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .product {
+    &__wrapper {
+      flex: 40%;
     }
   }
 }

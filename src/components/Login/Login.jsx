@@ -1,16 +1,14 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import Modal from '../UI/Modal';
 import style from './Login.module.scss';
+import { app } from '../../firebase-init';
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  createUserWithEmailAndPassword,
+} from 'firebase/auth';
 import { useSelector, useDispatch } from 'react-redux';
 import { userActions } from '../../store/profile-slice';
-
-const registeredUsers = [
-  { name: 'daria', password: 'babenko' },
-  { name: '123', password: '123' },
-  { name: 'admin', password: 'admin' },
-  { name: 'admin', password: 'password' },
-  { name: 'user', password: 'password' },
-];
 
 const Login = (props) => {
   const [userLogin, setUserLogin] = useState('');
@@ -18,6 +16,7 @@ const Login = (props) => {
 
   const [focused, setFocused] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [formSignupSignin, setFormSingupSignin] = useState('signin');
 
   const dispatch = useDispatch();
 
@@ -30,6 +29,12 @@ const Login = (props) => {
   const handleBlur = () => {
     setFocused(false);
   };
+  const handleSignUp = () => {
+    setFormSingupSignin('signup');
+  };
+  const handleSignIn = () => {
+    setFormSingupSignin('signin');
+  };
 
   const handleInput = () => {
     setUserLogin(userLoginRef.current.value);
@@ -39,63 +44,160 @@ const Login = (props) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (userLogin.length > 0 && userPassword.length > 0) {
-      const user = registeredUsers.find((user) => {
-        return user.name === userLogin && user.password === userPassword;
-      });
-
-      if (user) {
-        dispatch(userActions.toggleUser(Boolean(user)));
-        setIsTyping(false);
-
-        return;
-      }
-      //....
-      // setError('sadfasdfas')
+    if (formSignupSignin === 'signin') {
+      loginEmailPassword();
     }
-
-    //...
+    if (formSignupSignin === 'signup') {
+      createAccount();
+    }
   };
-
+  const auth = getAuth(app);
+  const loginEmailPassword = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        userLogin,
+        userPassword
+      );
+      if (userCredential.user) {
+        dispatch(userActions.toggleUser(true));
+      }
+    } catch (error) {
+      console.log(error);
+      setIsTyping(false);
+    }
+  };
+  const createAccount = async () => {
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        userLogin,
+        userPassword
+      );
+      if (userCredential.user) {
+        dispatch(userActions.toggleUser(true));
+      }
+    } catch (error) {
+      console.log(error);
+      setIsTyping(false);
+    }
+  };
   const inputStyle = useMemo(
     () => (!toggleUser ? (focused ? '' : isTyping ? '' : style.red) : ''),
     [focused, isTyping, toggleUser]
   );
 
   return (
+    <div>
+      {formSignupSignin === 'signin' && (
+        <SignIn
+          onClose={props.onClose}
+          handleSubmit={handleSubmit}
+          handleInput={handleInput}
+          handleBlur={handleBlur}
+          handleFocus={handleFocus}
+          userPasswordRef={userPasswordRef}
+          userLoginRef={userLoginRef}
+          inputStyle={inputStyle}
+          handleSignUp={handleSignUp}
+        />
+      )}
+      {formSignupSignin === 'signup' && (
+        <SignUp
+          onClose={props.onClose}
+          handleSubmit={handleSubmit}
+          handleInput={handleInput}
+          handleBlur={handleBlur}
+          handleFocus={handleFocus}
+          userPasswordRef={userPasswordRef}
+          userLoginRef={userLoginRef}
+          inputStyle={inputStyle}
+          handleSignIn={handleSignIn}
+        />
+      )}
+    </div>
+  );
+};
+
+export const SignIn = (props) => {
+  return (
     <Modal title='Login' onClose={props.onClose}>
-      <form onSubmit={handleSubmit} className={style.profile}>
+      <form onSubmit={props.handleSubmit} className={style.profile}>
         <div className={style['profile__label']}>
-          <label htmlFor='username'>
-            Username
+          <label htmlFor='email'>
+            Email
             <input
-              className={inputStyle}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
-              type='username'
-              onChange={handleInput}
-              value={userLogin}
-              ref={userLoginRef}
+              className={props.inputStyle}
+              onFocus={props.handleFocus}
+              onBlur={props.handleBlur}
+              type='email'
+              onChange={props.handleInput}
+              value={props.userLogin}
+              ref={props.userLoginRef}
             />
-            {/* {error ? <div>go nahui</div> : null} */}
           </label>
         </div>
         <div className={style['profile__label']}>
           <label htmlFor='password'>
             Password
             <input
-              className={inputStyle}
-              onFocus={handleFocus}
-              onBlur={handleBlur}
+              className={props.inputStyle}
+              onFocus={props.handleFocus}
+              onBlur={props.handleBlur}
               type='password'
-              onChange={handleInput}
-              value={userPassword}
-              ref={userPasswordRef}
+              onChange={props.handleInput}
+              value={props.userPassword}
+              ref={props.userPasswordRef}
             />
           </label>
         </div>
         <button type='submit' className={style['profile__btn']}>
-          login
+          Login
+        </button>
+        <button onClick={props.handleSignUp} className={style['profile__btn']}>
+          Sign up
+        </button>
+      </form>
+    </Modal>
+  );
+};
+export const SignUp = (props) => {
+  return (
+    <Modal title='SignUp' onClose={props.onClose}>
+      <form onSubmit={props.handleSubmit} className={style.profile}>
+        <div className={style['profile__label']}>
+          <label htmlFor='email'>
+            Email
+            <input
+              className={props.inputStyle}
+              onFocus={props.handleFocus}
+              onBlur={props.handleBlur}
+              type='email'
+              onChange={props.handleInput}
+              value={props.userLogin}
+              ref={props.userLoginRef}
+            />
+          </label>
+        </div>
+        <div className={style['profile__label']}>
+          <label htmlFor='password'>
+            Password
+            <input
+              className={props.inputStyle}
+              onFocus={props.handleFocus}
+              onBlur={props.handleBlur}
+              type='password'
+              onChange={props.handleInput}
+              value={props.userPassword}
+              ref={props.userPasswordRef}
+            />
+          </label>
+        </div>
+        <button type='submit' className={style['profile__btn']}>
+          Sign up
+        </button>
+        <button onClick={props.handleSignIn} className={style['profile__btn']}>
+          Sign in
         </button>
       </form>
     </Modal>

@@ -14,9 +14,9 @@ const Card = ({ id, name, quantity, total, price }) => {
     dispatch(cartActions.addItemToCart({ id, name, price }));
   };
   return (
-    <div className={style.card}>
+    <li className={style.card}>
       <div className={style['card__top']}>
-        <h2>{name}</h2>
+        <h2 className={style['card__name']}>{name}</h2>
         <p>{price}$</p>
       </div>
       <div className={style['card__bot']}>
@@ -25,7 +25,7 @@ const Card = ({ id, name, quantity, total, price }) => {
         <button onClick={removeItemHadler}>rm</button>
         <p>total: {total}$</p>
       </div>
-    </div>
+    </li>
   );
 };
 

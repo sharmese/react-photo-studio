@@ -1,7 +1,8 @@
 import React, { useState, useCallback } from 'react';
 import style from './Menu.module.scss';
+import { Link } from 'react-router-dom';
 
-const Menu = () => {
+const Menu = (props) => {
   const [isOpen, setIsOpen] = useState(undefined);
 
   const handleOpen = useCallback(() => {
@@ -55,11 +56,26 @@ const Menu = () => {
         <div className={style['menu__background']}></div>
         <div className={style['menu__container']}>
           <div className={style['menu__links']}>
-            <div className={style['menu__link']}>profile</div>
-            <div className={style['menu__link']}>wishlist</div>
-            <div className={style['menu__link']}>cart</div>
+            <Link to={'/'} className={style['menu__link']}>
+              home
+            </Link>
+            <Link
+              to={props.toggleUser && '/profile'}
+              onClick={props.toggleLoginHandler}
+              className={style['menu__link']}
+            >
+              profile
+            </Link>
+            <div
+              onClick={props.toggleCartHandler}
+              className={style['menu__link']}
+            >
+              cart
+            </div>
             <div className={style['menu__link']}>reviews</div>
-            <div className={style['menu__link']}>assortment</div>
+            <Link to={'/products'} className={style['menu__link']}>
+              shop
+            </Link>
           </div>
         </div>
       </div>

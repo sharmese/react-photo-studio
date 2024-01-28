@@ -19,7 +19,9 @@ const Header = (props) => {
   const dispatch = useDispatch();
 
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
+
   const toggleUser = useSelector((state) => state.user.userIsLogged);
+
   const toggleLogin = useSelector((state) => state.ui.loginIsVisible);
   const toggleLoginHandler = () => {
     dispatch(uiActions.toggleLogin());
@@ -110,7 +112,13 @@ const Header = (props) => {
         </div>
         <div className={style['nav-burger']}>
           <button className={style['nav-burger--btn']}>
-            <Menu />
+            <Menu
+              toggleUser={toggleUser}
+              toggleLogin={toggleLogin}
+              toggleLoginHandler={toggleLoginHandler}
+              toggleCart={toggleCart}
+              toggleCartHandler={toggleCartHandler}
+            />
           </button>
         </div>
       </nav>

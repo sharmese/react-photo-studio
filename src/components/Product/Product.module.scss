@@ -1,11 +1,19 @@
+@import '../../styles/variables';
+
 .btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: $color-grey;
 }
 .product {
   display: flex;
+  margin-top: 2rem;
+
   &__images {
     display: flex;
-    margin-top: 2rem;
     flex: 60%;
+    margin-right: 2rem;
     &--small {
       display: flex;
       flex-direction: column;
@@ -19,5 +27,97 @@
   }
   &__info {
     flex: 40%;
+    &-name {
+      color: $color-dark-beige;
+      font-family: $font-zetta;
+      font-size: 2.4rem;
+      max-width: 43rem;
+    }
+    &-stars {
+      margin-bottom: 5rem;
+    }
+    &-price {
+      margin-bottom: 4.2rem;
+    }
+    &-desc {
+      p {
+        font-size: 1.6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+      hr {
+        margin-bottom: 1rem;
+        max-width: 7.4rem;
+      }
+      color: $color-dark-beige;
+      font-family: $font-zetta;
+      font-size: 1.4rem;
+    }
+    &-col,
+    &-size {
+      margin-top: 3.1rem;
+      display: flex;
+      gap: 1rem;
+      align-items: center;
+      cursor: pointer;
+      .col {
+        font-size: 1rem;
+        &-active {
+          background-color: black;
+          color: $color-beige;
+        }
+      }
+      .size {
+        font-size: 1.2rem;
+      }
+      .col,
+      .size {
+        padding: 1rem 2rem;
+        border: 1px solid $color-dark-beige;
+      }
+    }
+    &-quant {
+      margin-top: 3.1rem;
+      display: flex;
+      align-items: center;
+      .quant-p {
+        margin-right: 2rem;
+      }
+      .quant-input,
+      .quant-btn {
+        padding: 0.5rem 2rem;
+        border: 1px solid $color-dark-beige;
+        background: transparent;
+      }
+      .quant-input {
+        max-width: 10rem;
+      }
+    }
+    &-buy {
+      margin-top: 9rem;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      .buy-btn {
+        padding: 2rem 4rem;
+        background: transparent;
+        border: 1px solid $color-dark-beige;
+      }
+    }
+  }
+}
+@media only screen and (max-width: 640px) {
+  .product {
+    display: block;
+    &__images {
+      margin-bottom: 5rem;
+      margin-right: 0;
+      &--small {
+        margin-right: 2rem;
+        gap: 2rem;
+      }
+      &--big {
+      }
+    }
   }
 }

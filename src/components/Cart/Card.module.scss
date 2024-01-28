@@ -1,21 +1,30 @@
 @import '../../styles/variables';
 .card {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
   margin: 1rem 1rem;
   padding: 1rem 1rem;
   background: $color-light-grey;
   border-radius: 10px;
   font-family: $font-ledger;
+  &__name {
+    max-width: 60%;
+    font-weight: 400;
+    font-size: 1.5rem;
+  }
   &__top,
   &__bot {
-    font-size: 2.5rem;
+    font-size: 2rem;
     display: flex;
-    align-items: center;
   }
   &__top {
     justify-content: space-between;
   }
   &__bot {
     justify-content: right;
+    align-items: center;
+
     gap: 2rem;
   }
 }

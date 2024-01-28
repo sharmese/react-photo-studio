@@ -10,14 +10,14 @@
     position: absolute;
     left: 0;
     right: 0;
-    animation: 0.7s ease-in menuOpen;
+    animation: 0.3s ease-in menuOpen;
     animation-fill-mode: forwards;
   }
   &__hidden {
     display: none;
   }
   &__close {
-    animation: 0.7s ease-out menuClose;
+    animation: 0.3s ease-out menuClose;
     animation-fill-mode: forwards;
   }
   &__button {
@@ -29,6 +29,7 @@
     position: absolute;
     left: 0;
     height: 100svh;
+    top: -2rem;
     background: $color-light-grey;
     width: 100vw;
     z-index: -1;

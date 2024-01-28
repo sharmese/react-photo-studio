@@ -9,10 +9,28 @@
     justify-content: space-between;
     color: $color-dark-beige;
     font-size: 2.4rem;
+    &--ul {
+      display: flex;
+      justify-content: space-between;
+      cursor: pointer;
+    }
     &--left {
       font-family: $font-ledger;
       font-size: 2em;
       flex: 33%;
+    }
+    &--dot {
+      margin-top: 1.5rem;
+      display: flex;
+      width: 0.9rem;
+      height: 0.9rem;
+      border: 1px solid;
+      border-radius: 90%;
+      background-color: rgb(61, 46, 16);
+    }
+    .dot {
+      background-color: transparent;
+      border-color: rgba(198, 185, 168);
     }
     &--right {
       font-family: $font-zetta;
@@ -25,12 +43,25 @@
       li {
         display: flex;
         justify-content: space-between;
-        p {
-          font-size: 1.5em;
-          line-height: 1;
-        }
       }
     }
+  }
+}
+.animated__dropdown {
+  animation: growDown 200ms ease-in-out forwards;
+  transform-origin: top center;
+}
+@keyframes growDown {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  50% {
+    opacity: 0.1;
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 @media only screen and (max-width: 768px) {

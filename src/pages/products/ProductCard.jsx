@@ -1,10 +1,15 @@
 import React, { Fragment } from 'react';
 import style from './Products.module.scss';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
+import { uiActions } from '../../store/ui-slice';
 const ProductCard = (props) => {
   const dispatch = useDispatch();
+
+  const toggleCartHandler = () => {
+    dispatch(uiActions.toggleCart());
+  };
 
   const addToCartHandler = () => {
     dispatch(
@@ -16,17 +21,30 @@ const ProductCard = (props) => {
     );
   };
   return (
-    <Fragment>
+    <li className={style['product__wrapper']}>
       <Link to={`/product/${props.id}`}>
         <h2>{props.name}</h2>
         <div className={style['products__product']}>
           <img src={props.image} alt='product' />
         </div>
-        <p>{props.price}</p>
+        <p>{props.price}uah</p>
+        <hr />
       </Link>
-      <button onClick={addToCartHandler}>buy</button>
-      <button onClick={addToCartHandler}>add to cart</button>
-    </Fragment>
+      <div className={style['product__buttons']}>
+        <button
+          className={style['product--btn']}
+          onClick={() => {
+            addToCartHandler();
+            toggleCartHandler();
+          }}
+        >
+          buy
+        </button>
+        <button className={style['product--btn']} onClick={addToCartHandler}>
+          add to cart
+        </button>
+      </div>
+    </li>
   );
 };
 

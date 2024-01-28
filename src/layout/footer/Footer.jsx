@@ -10,9 +10,15 @@ const Footer = () => {
       <div className={style['footer__heading']}>ASUNA</div>
       <div className={style['footer__links']}>
         <div className={style['footer__links--icons']}>
-          <img src={facebook} alt='facebook' />
-          <img src={telegram} alt='telegram' />
-          <img src={instagram} alt='instagram' />
+          <a href='http://facebook.com'>
+            <img src={facebook} alt='facebook' />
+          </a>
+          <a href='https://web.telegram.org'>
+            <img src={telegram} alt='telegram' />
+          </a>
+          <a href='https://instagram.com'>
+            <img src={instagram} alt='instagram' />
+          </a>
         </div>
         <div className={style['footer__links--inst']}>@asuna_re</div>
       </div>

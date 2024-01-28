@@ -14,16 +14,14 @@ const Cart = (props) => {
           <ul>
             {cartData.map((item) => {
               return (
-                <li>
-                  <Card
-                    key={item.id}
-                    id={item.id}
-                    name={item.name}
-                    quantity={item.quantity}
-                    total={item.totalPrice}
-                    price={item.price}
-                  />
-                </li>
+                <Card
+                  key={item.id}
+                  id={item.id}
+                  name={item.name}
+                  quantity={item.quantity}
+                  total={item.totalPrice}
+                  price={item.price}
+                />
               );
             })}
           </ul>
