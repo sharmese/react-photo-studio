@@ -1,3 +1,5 @@
+//Слайс який зберігає массив можливих помилок та видає їх в залежності від коду помилки
+
 import { createSlice } from '@reduxjs/toolkit';
 const errorSlice = createSlice({
   name: 'error',

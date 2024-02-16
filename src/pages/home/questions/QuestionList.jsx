@@ -1,6 +1,7 @@
 import React, { Fragment, useEffect, useMemo, useState } from 'react';
 
 const QuestionList = (props) => {
+  //Стейт для збереження відкритого розділу в секції Q&A
   const [openedItem, setOpenedItem] = useState(undefined);
 
   const handleItem = () => {

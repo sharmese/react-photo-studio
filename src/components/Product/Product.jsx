@@ -9,7 +9,7 @@ import { uiActions } from '../../store/ui-slice';
 import { cartActions } from '../../store/cart-slice';
 //desc price name color size quantity
 
-const Product = (props) => {
+const Product = () => {
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const Product = (props) => {
       content: 'XS',
     },
   ];
-
+  //Функція додає об'єкт до корзини юзера за допомогою метода addItemToCart в cart-slice
   const addToCartHandler = () => {
     dispatch(
       cartActions.addItemToCart({

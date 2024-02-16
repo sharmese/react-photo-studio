@@ -7,6 +7,7 @@ import ProductCard from './ProductCard';
 import { useSelector } from 'react-redux';
 
 const Products = () => {
+  //Отримання доступу до массиву об'єктів в products-slice за допомогою колбеку useSelector
   const products = useSelector((state) => state.product.items);
   return (
     <Fragment>

@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { cartActions } from '../../store/cart-slice';
 import { uiActions } from '../../store/ui-slice';
 const ProductCard = (props) => {
+  //Виведення на екран корзини за допомогою методу toggleCart в cart-slice
   const dispatch = useDispatch();
 
   const toggleCartHandler = () => {

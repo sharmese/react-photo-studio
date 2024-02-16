@@ -14,19 +14,22 @@ import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../store/ui-slice';
 
 const Header = (props) => {
+  //Стейт для серчбару в хедері
   const [isSearching, setIsSearching] = useState(false);
 
   const dispatch = useDispatch();
-
+  //Отримання інформації стосовно корзини
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
-
+  //Отримання інформації стосовно юзера
   const toggleUser = useSelector((state) => state.user.userIsLogged);
-
+  //Отримання інформації стосовно вікна реєстрації
   const toggleLogin = useSelector((state) => state.ui.loginIsVisible);
+  //При візові функції зміна стейту вікна реєстрації на відкрите або закрите
   const toggleLoginHandler = () => {
     dispatch(uiActions.toggleLogin());
   };
   const toggleCart = useSelector((state) => state.ui.cartIsVisible);
+  //При візові функції зміна стейту вікна корзини на відкрите або закрите
   const toggleCartHandler = () => {
     dispatch(uiActions.toggleCart());
   };

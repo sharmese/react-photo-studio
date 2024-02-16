@@ -1,3 +1,4 @@
+//Слайс який зберігає інформацію, що юзер вже залогінівся при оновленні сторінки, та дає змогу вийти з данного профілю
 import { createSlice } from '@reduxjs/toolkit';
 const userSlice = createSlice({
   name: 'user',

@@ -8,6 +8,7 @@ import { userActions } from '../../store/profile-slice';
 import { getAuth, signOut } from 'firebase/auth';
 
 const Profile = () => {
+  //Вихід з профілю за допомогою колбеку useDispatch та метода exitUser в profile-slice
   const dispatch = useDispatch();
   const auth = getAuth();
   const handleExitUser = () => {

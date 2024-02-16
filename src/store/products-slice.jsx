@@ -1,3 +1,6 @@
+//Слайс який зберігає об'єкти та виводить потрібний при переході на сторінку
+//також може змінювати колір та розмір, якщо клієнт цього побажав
+
 import { createSlice } from '@reduxjs/toolkit';
 import image from '../assets/imagefull.jpeg';
 

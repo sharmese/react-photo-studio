@@ -1,3 +1,4 @@
+//Слайс який зберігає інформацію щодо стейта корзини або вікна реєстрації та оновляє її
 import { createSlice } from '@reduxjs/toolkit';
 
 const uiSlice = createSlice({

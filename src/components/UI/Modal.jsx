@@ -2,6 +2,8 @@ import React, { Fragment } from 'react';
 import ReactDOM from 'react-dom';
 import style from './Modal.module.scss';
 
+//Реюзабельне модальне вікно за допомогою createPortal, що дає доступ до DOM
+
 const Backdrop = (props) => {
   return <div className={style.backdrop} onClick={props.onClose} />;
 };

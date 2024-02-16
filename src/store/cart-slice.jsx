@@ -1,3 +1,5 @@
+//Слайс для корзини на сайті, для зберігання та видалення об'єктів зі стору
+
 import { createSlice } from '@reduxjs/toolkit';
 
 const cartSlice = createSlice({
