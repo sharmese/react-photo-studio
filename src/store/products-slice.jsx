@@ -2,7 +2,31 @@
 //також може змінювати колір та розмір, якщо клієнт цього побажав
 
 import { createSlice } from '@reduxjs/toolkit';
-import image from '../assets/imagefull.jpeg';
+
+import image1_1 from '../assets/product1_1.jpg';
+import image1_2 from '../assets/product1_2.jpg';
+import image1_3 from '../assets/product1_3.jpg';
+import image2_1 from '../assets/product2_1.jpg';
+import image2_2 from '../assets/product2_2.jpg';
+import image2_3 from '../assets/product2_3.jpg';
+import image3_1 from '../assets/product3_1.jpg';
+import image3_2 from '../assets/product3_2.jpg';
+import image3_3 from '../assets/product3_3.jpg';
+import image4_1 from '../assets/product4_1.jpg';
+import image4_2 from '../assets/product4_2.jpg';
+import image4_3 from '../assets/product4_3.jpg';
+import image5_1 from '../assets/product5_1.jpg';
+import image5_2 from '../assets/product5_2.jpg';
+import image5_3 from '../assets/product5_3.jpg';
+import image6_1 from '../assets/product6_1.jpg';
+import image6_2 from '../assets/product6_2.jpg';
+import image6_3 from '../assets/product6_3.jpg';
+import image7_1 from '../assets/product7_1.jpg';
+import image7_2 from '../assets/product7_2.jpg';
+import image7_3 from '../assets/product7_3.jpg';
+import image8_1 from '../assets/product8_1.jpg';
+import image8_2 from '../assets/product8_2.jpg';
+import image8_3 from '../assets/product8_3.jpg';
 
 const DUMMY_PRODUCTS = [
   {
@@ -10,7 +34,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'DARLING',
     name: 'СПОКУСЛИВИЙ КОМПЛЕКТ «DARLING», КОЛІР ЧОРНИЙ',
     price: 1648,
-    image: image,
+    image: [image1_1, image1_2, image1_3],
     color: 'black',
     size: 'large',
   },
@@ -19,7 +43,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'SOMETHING',
     name: 'Sweater',
     price: 10,
-    image: image,
+    image: [image2_1, image2_2, image2_3],
     color: 'black',
     size: 'large',
   },
@@ -28,7 +52,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'BEEWITCH',
     name: 'Dress',
     price: 30,
-    image: image,
+    image: [image3_1, image3_2, image3_3],
     color: 'black',
     size: 'large',
   },
@@ -37,7 +61,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'COOLIE',
     name: 'Cringe',
     price: 20,
-    image: image,
+    image: [image4_1, image4_2, image4_3],
     color: 'black',
     size: 'large',
   },
@@ -46,7 +70,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'RUBIES',
     name: 'Machine',
     price: 100,
-    image: image,
+    image: [image5_1, image5_2, image5_3],
     color: 'black',
     size: 'large',
   },
@@ -55,7 +79,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'DIAMOND',
     name: 'Loot',
     price: 50,
-    image: image,
+    image: [image6_1, image6_2, image6_3],
     color: 'black',
     size: 'large',
   },
@@ -64,7 +88,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'MATEROKE',
     name: 'Hook',
     price: 20,
-    image: image,
+    image: [image7_1, image7_2, image7_3],
     color: 'black',
     size: 'large',
   },
@@ -73,7 +97,7 @@ const DUMMY_PRODUCTS = [
     shortName: 'GEOLOC',
     name: 'Rook',
     price: 30,
-    image: image,
+    image: [image8_1, image8_2, image8_3],
     color: 'black',
     size: 'large',
   },

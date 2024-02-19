@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 import { useSelector, useDispatch } from 'react-redux';
@@ -10,11 +10,13 @@ import { cartActions } from '../../store/cart-slice';
 //desc price name color size quantity
 
 const Product = () => {
+  const [isLoading, setIsLoading] = useState(true);
   const { id } = useParams();
 
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(productActions.getProductById(id));
+    setIsLoading(false);
   }, [dispatch, id]);
   const product = useSelector((state) => state.product.reqItem);
   const toggleItemColor = (color) => {
@@ -80,16 +82,16 @@ const Product = () => {
       <Link to={'/products'} className={style.btn}>
         Назад
       </Link>
-      {err === undefined ? (
+      {err === undefined && !isLoading ? (
         <div className={style.product}>
           <div className={style['product__images']}>
             <div className={style['product__images--small']}>
-              <img src={product.image} alt='product' />
-              <img src={product.image} alt='product' />
-              <img src={product.image} alt='product' />
+              <img src={product.image[0]} alt='product' />
+              <img src={product.image[1]} alt='product' />
+              <img src={product.image[2]} alt='product' />
             </div>
             <div className={style['product__images--big']}>
-              <img src={product.image} alt='product' />
+              <img src={product.image[0]} alt='product' />
             </div>
           </div>
           <div className={style['product__info']}>

@@ -12,6 +12,7 @@ import { userActions } from './store/profile-slice';
 import { errorActions } from './store/error-slice';
 
 function App() {
+  //Зареєстрований чи ні
   const auth = getAuth();
   const dispatch = useDispatch();
   const isUser = useSelector((state) => state.user.userIsLogged);
