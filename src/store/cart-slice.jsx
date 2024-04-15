@@ -1,13 +1,21 @@
 //Слайс для корзини на сайті, для зберігання та видалення об'єктів зі стору
 
 import { createSlice } from '@reduxjs/toolkit';
-
+const items = JSON.parse(localStorage.getItem('cart'));
+let quant = 0;
+items.forEach((item) => {
+  quant += item.quantity;
+});
+let amount = 0;
+items.forEach((item) => {
+  amount += item.totalPrice;
+});
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: [],
-    totalQuantity: 0,
-    totalAmount: 0,
+    items: items,
+    totalQuantity: quant,
+    totalAmount: amount,
   },
   reducers: {
     addItemToCart(state, action) {
@@ -27,6 +35,7 @@ const cartSlice = createSlice({
         existingItem.quantity = existingItem.quantity + 1;
         existingItem.totalPrice = existingItem.totalPrice + newItem.price;
       }
+      localStorage.setItem('cart', JSON.stringify(state.items));
     },
     removeItemFromCart(state, action) {
       const id = action.payload;
@@ -39,6 +48,7 @@ const cartSlice = createSlice({
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
       }
+      localStorage.setItem('cart', JSON.stringify(state.items));
     },
   },
 });

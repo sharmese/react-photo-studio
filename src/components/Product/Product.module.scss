@@ -20,6 +20,9 @@
       gap: 3rem;
       margin-right: 3.5rem;
       max-width: 12rem;
+      img {
+        cursor: pointer;
+      }
     }
     &--big {
       max-width: 51rem;

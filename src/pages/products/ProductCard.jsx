@@ -24,12 +24,12 @@ const ProductCard = (props) => {
   return (
     <li className={style['product__wrapper']}>
       <Link to={`/product/${props.id}`}>
-        <h2>{props.name}</h2>
         <div className={style['products__product']}>
           <img src={props.image} alt='product' />
         </div>
-        <p>{props.price}uah</p>
-        <hr />
+        <h2>{props.name}</h2>
+
+        <p>{props.price}₴</p>
       </Link>
       <div className={style['product__buttons']}>
         <button

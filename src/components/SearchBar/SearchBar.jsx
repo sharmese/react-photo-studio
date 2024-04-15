@@ -28,17 +28,14 @@ const SearchBar = (props) => {
     () =>
       //Метод массиву який перевіряє співпадіння введених юзером данних з існуючими
       products.map((item, index) => {
-        if (
-          item.name.toLowerCase().match(searchInput.toLowerCase()) ||
-          item.shortName.toLowerCase().match(searchInput.toLowerCase())
-        ) {
+        if (item.name.toLowerCase().match(searchInput.toLowerCase())) {
           return (
             <Link
               to={`/product/${item.id}`}
               className={style['searchbar__item']}
               key={index}
             >
-              {item.shortName} {`${item.price}$`}
+              {item.name} {`${item.price}$`}
             </Link>
           );
         }

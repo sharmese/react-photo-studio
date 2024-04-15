@@ -10,7 +10,11 @@ import { cartActions } from '../../store/cart-slice';
 //desc price name color size quantity
 
 const Product = () => {
+  const product = useSelector((state) => state.product.reqItem);
+
   const [isLoading, setIsLoading] = useState(true);
+  const [bigImage, setBigImage] = useState();
+
   const { id } = useParams();
 
   const dispatch = useDispatch();
@@ -18,7 +22,6 @@ const Product = () => {
     dispatch(productActions.getProductById(id));
     setIsLoading(false);
   }, [dispatch, id]);
-  const product = useSelector((state) => state.product.reqItem);
   const toggleItemColor = (color) => {
     dispatch(productActions.changeProductColor(color));
   };
@@ -86,12 +89,33 @@ const Product = () => {
         <div className={style.product}>
           <div className={style['product__images']}>
             <div className={style['product__images--small']}>
-              <img src={product.image[0]} alt='product' />
-              <img src={product.image[1]} alt='product' />
-              <img src={product.image[2]} alt='product' />
+              <img
+                src={product.image[0]}
+                alt='product'
+                onClick={() => {
+                  setBigImage(product.image[0]);
+                }}
+              />
+              <img
+                src={product.image[1]}
+                alt='product'
+                onClick={() => {
+                  setBigImage(product.image[1]);
+                }}
+              />
+              <img
+                src={product.image[2]}
+                alt='product'
+                onClick={() => {
+                  setBigImage(product.image[2]);
+                }}
+              />
             </div>
             <div className={style['product__images--big']}>
-              <img src={product.image[0]} alt='product' />
+              <img
+                src={bigImage !== undefined ? bigImage : product.image[0]}
+                alt='product'
+              />
             </div>
           </div>
           <div className={style['product__info']}>

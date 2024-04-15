@@ -1,8 +1,9 @@
 //Слайс який зберігає інформацію, що юзер вже залогінівся при оновленні сторінки, та дає змогу вийти з данного профілю
 import { createSlice } from '@reduxjs/toolkit';
+
 const userSlice = createSlice({
   name: 'user',
-  initialState: { userIsLogged: false, userData: [] },
+  initialState: { userIsLogged: false, userData: [], userCart: [] },
   reducers: {
     toggleUser(state, action) {
       const isUser = action.payload;
