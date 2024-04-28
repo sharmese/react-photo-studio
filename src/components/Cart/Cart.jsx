@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Modal from '../UI/Modal';
 import Card from './Card';
 import style from './Cart.module.scss';

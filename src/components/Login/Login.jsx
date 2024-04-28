@@ -61,6 +61,7 @@ const Login = (props) => {
       );
       if (userCredential.user) {
         dispatch(userActions.toggleUser(true));
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);
@@ -76,6 +77,7 @@ const Login = (props) => {
       );
       if (userCredential.user) {
         dispatch(userActions.toggleUser(true));
+        window.location.reload();
       }
     } catch (error) {
       console.log(error);

@@ -14,6 +14,10 @@ const store = configureStore({
     product: productSlice.reducer,
     error: errorSlice.reducer,
   },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
 });
 
 export default store;

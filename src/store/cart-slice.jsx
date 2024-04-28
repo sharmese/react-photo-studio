@@ -1,19 +1,36 @@
 //Слайс для корзини на сайті, для зберігання та видалення об'єктів зі стору
 
 import { createSlice } from '@reduxjs/toolkit';
-const items = JSON.parse(localStorage.getItem('cart'));
-let quant = 0;
-items.forEach((item) => {
-  quant += item.quantity;
-});
-let amount = 0;
-items.forEach((item) => {
-  amount += item.totalPrice;
-});
+
+import { getAuth } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase-init';
+
+const setCartByUid = async (items) => {
+  const auth = getAuth();
+  const user = auth.currentUser;
+  if (user) {
+    await setDoc(doc(db, 'user-cart', user.uid), {
+      cart: items,
+    });
+  } else {
+    localStorage.setItem('cart', JSON.stringify(items));
+  }
+};
+let items = JSON.parse(localStorage.getItem('cart'));
+let quant = 1;
+let amount = 1;
+
+// items.forEach((item) => {
+//   quant += item.quantity;
+// });
+// items.forEach((item) => {
+//   amount += item.totalPrice;
+// });
 const cartSlice = createSlice({
   name: 'cart',
   initialState: {
-    items: items,
+    items: [],
     totalQuantity: quant,
     totalAmount: amount,
   },
@@ -35,7 +52,7 @@ const cartSlice = createSlice({
         existingItem.quantity = existingItem.quantity + 1;
         existingItem.totalPrice = existingItem.totalPrice + newItem.price;
       }
-      localStorage.setItem('cart', JSON.stringify(state.items));
+      setCartByUid(state.items);
     },
     removeItemFromCart(state, action) {
       const id = action.payload;
@@ -48,7 +65,22 @@ const cartSlice = createSlice({
         existingItem.quantity--;
         existingItem.totalPrice = existingItem.totalPrice - existingItem.price;
       }
-      localStorage.setItem('cart', JSON.stringify(state.items));
+
+      setCartByUid(state.items);
+    },
+    getItemsFromUserData(state, action) {
+      state.items = action.payload;
+      let price = 0;
+      let quantity = 0;
+
+      action.payload.forEach((item) => {
+        price += item.totalPrice;
+      });
+      action.payload.forEach((item) => {
+        quantity += item.quantity;
+      });
+      state.totalAmount = price;
+      state.totalQuantity = quantity;
     },
   },
 });

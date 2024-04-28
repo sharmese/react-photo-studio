@@ -10,10 +10,14 @@ import { getAuth, onAuthStateChanged } from 'firebase/auth';
 import { useDispatch, useSelector } from 'react-redux';
 import { userActions } from './store/profile-slice';
 import { errorActions } from './store/error-slice';
+import { doc, setDoc, getDoc } from 'firebase/firestore';
+import { db } from './firebase-init';
+import { cartActions } from './store/cart-slice';
 
 function App() {
   //Зареєстрований чи ні
   const auth = getAuth();
+
   const dispatch = useDispatch();
   const isUser = useSelector((state) => state.user.userIsLogged);
 
@@ -21,6 +25,43 @@ function App() {
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(userActions.toggleUser(true));
+        const getUserData = async () => {
+          let cartData = [];
+          const docRef = doc(db, 'user-cart', user.uid);
+          const docSnap = await getDoc(docRef);
+          if (!docSnap.exists()) {
+            await setDoc(doc(db, 'user-cart', user.uid), {
+              cart: JSON.parse(localStorage.getItem('cart')),
+            });
+          } else {
+            if (docSnap.data().cart !== null) {
+              cartData.push(...docSnap.data().cart);
+            }
+            if (localStorage.length > 0) {
+              cartData.push(...JSON.parse(localStorage.getItem('cart')));
+              localStorage.clear();
+
+              const mergedArray = cartData.reduce((acc, curr) => {
+                const foundIndex = acc.findIndex((item) => item.id === curr.id);
+                if (foundIndex !== -1) {
+                  acc[foundIndex].quantity += curr.quantity;
+                  acc[foundIndex].totalPrice += curr.totalPrice;
+                } else {
+                  acc.push(curr);
+                }
+                return acc;
+              }, []);
+              await setDoc(doc(db, 'user-cart', user.uid), {
+                cart: mergedArray,
+              });
+              cartData = mergedArray;
+            } else if (localStorage === 0) {
+              return;
+            }
+          }
+          dispatch(cartActions.getItemsFromUserData(cartData));
+        };
+        getUserData();
       } else {
         dispatch(errorActions.changeErrorState(3));
       }

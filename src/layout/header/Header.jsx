@@ -98,7 +98,7 @@ const Header = (props) => {
           </button>
           <Link
             to={toggleUser ? '/profile' : ''}
-            onClick={toggleLoginHandler}
+            onClick={toggleUser ? '' : toggleLoginHandler}
             className={`${style['nav__link']} ${style['nav__link-7']}`}
           >
             <img src={profile} alt='profile' />

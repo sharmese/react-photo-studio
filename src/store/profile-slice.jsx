@@ -3,7 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const userSlice = createSlice({
   name: 'user',
-  initialState: { userIsLogged: false, userData: [], userCart: [] },
+  initialState: { userIsLogged: false, userData: [] },
   reducers: {
     toggleUser(state, action) {
       const isUser = action.payload;
