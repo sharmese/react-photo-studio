@@ -6,6 +6,7 @@ import Questions from './questions/Questions';
 import Reviews from './reviews/Reviews';
 import style from '../../layout/header/Header.module.scss';
 import { Link } from 'react-router-dom';
+import Footer from '../../layout/footer/Footer';
 
 const Home = () => {
   return (
@@ -24,6 +25,7 @@ const Home = () => {
       <About />
       <Reviews />
       <Questions />
+      <Footer />
     </Fragment>
   );
 };

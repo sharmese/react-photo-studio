@@ -9,7 +9,7 @@ import Cart from '../../components/Cart/Cart';
 import Login from '../../components/Login/Login';
 
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { uiActions } from '../../store/ui-slice';
 
@@ -19,6 +19,7 @@ const Header = (props) => {
 
   const dispatch = useDispatch();
   //Отримання інформації стосовно корзини
+  useEffect(()=>{},[])
   const cartQuantity = useSelector((state) => state.cart.totalQuantity);
   //Отримання інформації стосовно юзера
   const toggleUser = useSelector((state) => state.user.userIsLogged);

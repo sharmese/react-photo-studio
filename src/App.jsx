@@ -13,6 +13,7 @@ import { errorActions } from './store/error-slice';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
 import { db } from './firebase-init';
 import { cartActions } from './store/cart-slice';
+import PasswordReset from './components/Login/PasswordReset';
 
 function App() {
   //Зареєстрований чи ні
@@ -72,6 +73,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home />} />
         {isUser && <Route path='/profile' element={<Profile />} />}
+        <Route path='/reset' element={<PasswordReset />} />
         <Route path='/products' element={<Products />} />
         <Route path='/product/:id' element={<Product />} />
         <Route path='*' element={<Error />} />

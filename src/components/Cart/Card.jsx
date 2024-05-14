@@ -20,9 +20,13 @@ const Card = ({ id, name, quantity, total, price }) => {
         <p>{price}$</p>
       </div>
       <div className={style['card__bot']}>
-        <button onClick={addItemHandler}>add</button>
+        <button className={style['card__button']} onClick={addItemHandler}>
+          +
+        </button>
         <p>x{quantity}</p>
-        <button onClick={removeItemHadler}>rm</button>
+        <button className={style['card__button']} onClick={removeItemHadler}>
+          -
+        </button>
         <p>total: {total}$</p>
       </div>
     </li>

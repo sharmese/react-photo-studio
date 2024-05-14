@@ -1,5 +1,4 @@
 import style from './Questions.module.scss';
-import Footer from '../../../layout/footer/Footer';
 import QuestionList from './QuestionList';
 
 const DUMMU_QA = [
@@ -108,7 +107,6 @@ const Questions = () => {
             </ul>
           </div>
         </div>
-        <Footer />
       </div>
     </div>
   );

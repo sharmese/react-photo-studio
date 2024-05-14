@@ -21,6 +21,16 @@
   &__top {
     justify-content: space-between;
   }
+  &__button {
+    border: 2px solid $color-grey;
+    padding: 0 2rem;
+    border-radius: 30px;
+    background: inherit;
+    cursor: pointer;
+    &:hover {
+      background-color: $color-white;
+    }
+  }
   &__bot {
     justify-content: right;
     align-items: center;

@@ -5,7 +5,6 @@ import { createSlice } from '@reduxjs/toolkit';
 import { getAuth } from 'firebase/auth';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase-init';
-
 const setCartByUid = async (items) => {
   const auth = getAuth();
   const user = auth.currentUser;
@@ -17,7 +16,6 @@ const setCartByUid = async (items) => {
     localStorage.setItem('cart', JSON.stringify(items));
   }
 };
-let items = JSON.parse(localStorage.getItem('cart'));
 let quant = 1;
 let amount = 1;
 
