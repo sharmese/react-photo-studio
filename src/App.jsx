@@ -3,11 +3,10 @@ import Home from './pages/home/Home';
 import Profile from './pages/profile/Profile';
 import Products from './pages/products/Products';
 import Product from './components/Product/Product';
-import Login from './components/Login/Login';
 import Error from './pages/error/Error';
-import { useEffect } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { getAuth, onAuthStateChanged } from 'firebase/auth';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { userActions } from './store/profile-slice';
 import { errorActions } from './store/error-slice';
 import { doc, setDoc, getDoc } from 'firebase/firestore';
@@ -17,12 +16,16 @@ import PasswordReset from './components/Login/PasswordReset';
 
 function App() {
   //Зареєстрований чи ні
+  const [isLoading, setIsLoading] = useState(true);
   const auth = getAuth();
 
   const dispatch = useDispatch();
-  const isUser = useSelector((state) => state.user.userIsLogged);
 
   useEffect(() => {
+    setInterval(() => {
+      setIsLoading(false);
+    }, 1000);
+
     onAuthStateChanged(auth, (user) => {
       if (user) {
         dispatch(userActions.toggleUser(true));
@@ -64,21 +67,34 @@ function App() {
         };
         getUserData();
       } else {
+        dispatch(
+          cartActions.getItemsFromUserData(
+            JSON.parse(localStorage.getItem('cart'))
+          )
+        );
         dispatch(errorActions.changeErrorState(3));
       }
     });
   }, [auth, dispatch]);
   return (
-    <BrowserRouter basename='/'>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        {isUser && <Route path='/profile' element={<Profile />} />}
-        <Route path='/reset' element={<PasswordReset />} />
-        <Route path='/products' element={<Products />} />
-        <Route path='/product/:id' element={<Product />} />
-        <Route path='*' element={<Error />} />
-      </Routes>
-    </BrowserRouter>
+    <Fragment>
+      {isLoading ? (
+        <div className='lds-dual-ring'></div>
+      ) : (
+        <BrowserRouter basename='/'>
+          <Routes>
+            <Route path='/' element={<Home />} />
+            {auth.currentUser && (
+              <Route path='/profile' element={<Profile />} />
+            )}
+            <Route path='/reset' element={<PasswordReset />} />
+            <Route path='/products' element={<Products />} />
+            <Route path='/product/:id' element={<Product />} />
+            <Route path='*' element={<Error />} />
+          </Routes>
+        </BrowserRouter>
+      )}
+    </Fragment>
   );
 }
 

@@ -17,7 +17,7 @@ const Card = ({ id, name, quantity, total, price }) => {
     <li className={style.card}>
       <div className={style['card__top']}>
         <h2 className={style['card__name']}>{name}</h2>
-        <p>{price}$</p>
+        <p>{price}</p>
       </div>
       <div className={style['card__bot']}>
         <button className={style['card__button']} onClick={addItemHandler}>

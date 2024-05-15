@@ -107,7 +107,7 @@ const Profile = () => {
                 <input
                   type='email'
                   placeholder='ЕЛЕКТРОНА ПОШТА'
-                  value={user.email}
+                  defaultValue={user.email}
                 />
                 <button onClick={handleSubmit} type='submit'>
                   ЗБЕРЕГТИ

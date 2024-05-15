@@ -16,8 +16,8 @@ const setCartByUid = async (items) => {
     localStorage.setItem('cart', JSON.stringify(items));
   }
 };
-let quant = 1;
-let amount = 1;
+let quant = 0;
+let amount = 0;
 
 // items.forEach((item) => {
 //   quant += item.quantity;
@@ -67,16 +67,21 @@ const cartSlice = createSlice({
       setCartByUid(state.items);
     },
     getItemsFromUserData(state, action) {
-      state.items = action.payload;
       let price = 0;
       let quantity = 0;
 
-      action.payload.forEach((item) => {
-        price += item.totalPrice;
-      });
-      action.payload.forEach((item) => {
-        quantity += item.quantity;
-      });
+      if (action.payload) {
+        state.items = action.payload;
+        action.payload.forEach((item) => {
+          price += item.totalPrice;
+        });
+        action.payload.forEach((item) => {
+          quantity += item.quantity;
+        });
+      } else {
+        state.items = [];
+      }
+
       state.totalAmount = price;
       state.totalQuantity = quantity;
     },

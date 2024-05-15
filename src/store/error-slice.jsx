@@ -4,7 +4,7 @@ import { createSlice } from '@reduxjs/toolkit';
 const errorSlice = createSlice({
   name: 'error',
   initialState: {
-    errorCode: null,
+    errorCode: 3,
     errorArray: [
       {
         id: '1',

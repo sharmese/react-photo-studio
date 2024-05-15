@@ -7,7 +7,6 @@ import { db } from '../firebase-init';
 
 const querySnapshot = await getDocs(collection(db, 'products'));
 const data = querySnapshot.docs.map((doc) => doc.data());
-console.log(data);
 
 const productSlice = createSlice({
   name: 'product',
