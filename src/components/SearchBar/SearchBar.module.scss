@@ -2,16 +2,18 @@
 .searchbar {
   background: $color-white;
   text-align: center;
+  width: 25rem;
   border-radius: 10px;
   border: 1px solid $color-beige;
   &__items {
     text-wrap: wrap;
     max-height: 300px;
-    max-width: 25rem;
+    width: 100%;
     overflow: auto;
   }
   &__input {
     border-radius: 10px;
+    width: 100%;
     padding: 4px 10px;
     border-width: 0;
   }
@@ -21,5 +23,10 @@
     padding: 10px 10px;
     text-align: center;
     cursor: pointer;
+  }
+}
+@media only screen and (max-width: 1280px) {
+  .searchbar {
+    width: 20rem;
   }
 }

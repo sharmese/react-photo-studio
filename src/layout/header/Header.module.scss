@@ -40,7 +40,7 @@
   z-index: 19;
   position: fixed;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   padding: 20px 7%;
   top: 0;
   right: 0;
@@ -98,14 +98,11 @@
   border: 1px solid $color-beige;
   max-width: fit-content;
 }
-// @media only screen and (max-width: 1280px) {
-//   .nav__link {
-//     &-1,
-//     &-2 {
-//       display: none;
-//     }
-//   }
-// }
+@media only screen and (max-width: 1280px) {
+  .nav-first {
+    font-size: 2rem;
+  }
+}
 @media only screen and (max-width: 1024px) {
   .nav {
     justify-content: unset;
@@ -114,6 +111,9 @@
     }
     &-second {
       display: none;
+    }
+    &__cart {
+      display: flex;
     }
     &-burger {
       display: initial;

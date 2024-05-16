@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useRef, useState } from 'react';
 import Header from '../../layout/header/Header';
 import Footer from '../../layout/footer/Footer';
 import { useSelector, useDispatch } from 'react-redux';
@@ -14,9 +14,12 @@ const Product = () => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [bigImage, setBigImage] = useState();
-
+  const [productData, setProductData] = useState({ quantity: 0 });
+  const productQuantityRef = useRef(null);
   const { id } = useParams();
-
+  const handleProductData = () => {
+    setProductData({ quantity: productQuantityRef.current.value });
+  };
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(productActions.getProductById(id));
@@ -74,6 +77,7 @@ const Product = () => {
         id: product.id,
         price: product.price,
         name: product.name,
+        quantity: productData.quantity,
       })
     );
   };
@@ -166,9 +170,29 @@ const Product = () => {
             </div>
             <div className={style['product__info-quant']}>
               <p className={style['quant-p']}> Кількість</p>
-              <button className={style['quant-btn']}>-</button>
-              <input className={style['quant-input']} />
-              <button className={style['quant-btn']}>+</button>
+              <button
+                className={style['quant-btn']}
+                onClick={() => {
+                  if (productData.quantity > 0)
+                    setProductData({ quantity: productData.quantity - 1 });
+                }}
+              >
+                -
+              </button>
+              <input
+                className={style['quant-input']}
+                onChange={handleProductData}
+                ref={productQuantityRef}
+                value={productData.quantity}
+              />
+              <button
+                className={style['quant-btn']}
+                onClick={() => {
+                  setProductData({ quantity: +productData.quantity + 1 });
+                }}
+              >
+                +
+              </button>
             </div>
             <div className={style['product__info-buy']}>
               <button onClick={addToCartHandler} className={style['buy-btn']}>

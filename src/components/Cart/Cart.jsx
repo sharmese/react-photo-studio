@@ -25,7 +25,7 @@ const Cart = (props) => {
               );
             })}
           </ul>
-          <div className={style.total}>Total amount: {cartTotal}</div>
+          <div className={style.total}>Total amount: {cartTotal}₴</div>
         </Fragment>
       ) : (
         <div className={style.error}> No items was found </div>

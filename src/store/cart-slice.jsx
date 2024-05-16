@@ -36,20 +36,40 @@ const cartSlice = createSlice({
     addItemToCart(state, action) {
       const newItem = action.payload;
       const existingItem = state.items.find((item) => item.id === newItem.id);
-      state.totalQuantity++;
-      state.totalAmount = state.totalAmount + newItem.price;
-      if (!existingItem) {
-        state.items.push({
-          id: newItem.id,
-          price: newItem.price,
-          quantity: 1,
-          totalPrice: newItem.price,
-          name: newItem.name,
-        });
+      if (newItem.quantity) {
+        state.totalQuantity = state.totalQuantity + parseInt(newItem.quantity);
+        state.totalAmount += newItem.price * newItem.quantity;
+        if (!existingItem) {
+          state.items.push({
+            id: newItem.id,
+            price: newItem.price,
+            quantity: newItem.quantity,
+            totalPrice: newItem.price * newItem.quantity,
+            name: newItem.name,
+          });
+        } else {
+          existingItem.quantity =
+            parseInt(existingItem.quantity) + parseInt(newItem.quantity);
+          existingItem.totalPrice =
+            existingItem.totalPrice + newItem.price * newItem.quantity;
+        }
       } else {
-        existingItem.quantity = existingItem.quantity + 1;
-        existingItem.totalPrice = existingItem.totalPrice + newItem.price;
+        state.totalQuantity++;
+        state.totalAmount = state.totalAmount + newItem.price;
+        if (!existingItem) {
+          state.items.push({
+            id: newItem.id,
+            price: newItem.price,
+            quantity: 1,
+            totalPrice: newItem.price,
+            name: newItem.name,
+          });
+        } else {
+          existingItem.quantity = existingItem.quantity + 1;
+          existingItem.totalPrice = existingItem.totalPrice + newItem.price;
+        }
       }
+
       setCartByUid(state.items);
     },
     removeItemFromCart(state, action) {
